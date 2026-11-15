@@ -1,0 +1,12 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {"item": "minecraft:gravel"}
+  ],
+  "processingTime": 250,
+  "results": [
+    {"item": "minecraft:gravel"},
+    {"item": "minecraft:flint", "chance": 0.1},
+    {"item": "minecraft:diamond", "chance": 0.05}
+  ]
+}

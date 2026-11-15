@@ -1,11 +1,18 @@
 {
   "type": "create:crushing",
   "ingredients": [
-    {"item": "minecraft:basalt"}
+    {
+      "item": "minecraft:basalt"
+    }
   ],
   "processingTime": 250,
   "results": [
-    {"item": "minecraft:blackstone"},
-    {"item": "minecraft:lapis_lazuli", "chance": 0.5}
+    {
+      "item": "minecraft:blackstone"
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "chance": 0.2
+    }
   ]
 }

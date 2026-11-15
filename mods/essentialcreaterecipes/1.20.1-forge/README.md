@@ -12,21 +12,33 @@ Adds Create processing recipes (mixing, crushing, compacting, pressing, milling,
 - Create: Ultimate Factory
 - Create: Refabricated Recipes
 
-## Recipes included (v1.0.0)
+## Recipes included (v1.1)
 
-- Crimsite (mixing, heated)
-- Veridium (mixing, heated)
-- Ochrum (mixing, heated)
-- Asurine (mixing, superheated)
-- Tuff (mixing, heated)
-- Cobbled Deepslate (compacting)
-- Dripstone Block (compacting)
-- Pointed Dripstone (cutting)
-- Magma Cream (milling)
-- Basalt Crushing (crushing -> blackstone + lapis)
+From Create: Automate Everything (corrected to match the mod's actual recipes):
+- 250mb Lava -> Magma Block (compacting)
+- Magma Block -> Basalt (fan freezing)
+- Basalt -> Blackstone + 20% Lapis (crushing)
+- Snow Block -> Ice (fan freezing / compacting)
+- Cobblestone + Cinder Flour + 25mb Lava -> Netherrack (compacting)
+- 4 Gold Nuggets + Limestone -> Ochrum (mixing, heated)
+- Cinder Flour + Cobblestone -> Crimsite (mixing, heated)
+- Crimsite + Quartz -> Veridium (mixing, heated)
+- Ochrum + Veridium + Redstone -> 2 Asurine (mixing, superheated)
+- Magma Block -> 2.5 Magma Cream (milling)
+- Clay Block -> Dripstone Block (compacting)
+- Dripstone Block -> 2 Pointed Dripstone (cutting)
+- Cobblestone + Cobbled Deepslate + Andesite + Diorite + Granite -> 16 Tuff (mixing, heated)
+- 4 Cobblestone -> Cobbled Deepslate (compacting)
+
+Additional automation (commonly requested):
+- Tuff (stone + gravel, mixing)
+- Brass Ingot (copper + zinc, mixing, heated)
+- Netherrack (cobblestone + cinder flour, mixing, heated)
 - Snow -> Ice (compacting)
-- Brass Ingot (mixing, heated)
-- Netherrack (mixing, heated)
+- Bone -> 3 Bone Meal (milling)
+- White Wool -> 4 String (cutting)
+- Gravel -> Diamond (crushing, 5% chance)
+- Netherrack -> Netherite Scrap (crushing, 0.5% chance)
 
 ## Requirements
 

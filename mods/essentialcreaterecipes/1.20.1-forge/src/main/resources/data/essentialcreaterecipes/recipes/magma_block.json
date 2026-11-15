@@ -1,0 +1,10 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {"fluid": "minecraft:lava", "amount": 250}
+  ],
+  "results": [
+    {"item": "minecraft:magma_block"}
+  ],
+  "heatRequirement": "none"
+}

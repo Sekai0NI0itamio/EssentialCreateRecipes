@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="essentialcreaterecipes"
-version="1.0.0"
+version="1.1.0"
 displayName="Essential Create Recipes"
 authors="Itamio"
 description='''Combines the best Create recipe and automation addons into one mod: automate ores, stones, Tuff, Calcite, Dripstone, Basalt, Brass, Lapis, Ink Sacs, Netherrack, and more. Merges recipes inspired by Create: Automate Everything, Create: Full Automation, Create: Recipe Extensions, Create: Ultimate Factory, and Create: Refabricated Recipes into a single cross-loader pack with toggleable recipes.'''

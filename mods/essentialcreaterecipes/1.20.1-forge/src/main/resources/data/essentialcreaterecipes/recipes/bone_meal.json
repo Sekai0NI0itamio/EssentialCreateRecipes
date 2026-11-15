@@ -1,0 +1,10 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {"item": "minecraft:bone"}
+  ],
+  "processingTime": 100,
+  "results": [
+    {"item": "minecraft:bone_meal", "count": 3}
+  ]
+}
