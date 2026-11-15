@@ -1,10 +1,5 @@
 name: Runtime test Essential Create Recipes
 
-# Launches the real Minecraft client headlessly (HeadlessMC + Xvfb via
-# mc-runtime-test), which reaches the title screen, joins a single-player
-# world, then quits cleanly. Surviving this proves the mod (and its recipes)
-# load in-game. Create is downloaded from Modrinth into run/mods/.
-
 on:
   push:
   pull_request:
@@ -40,14 +35,6 @@ jobs:
             fabric_api: 0.92.12
             create_project: create-fabric
             create_loader: fabric
-            java: '21'
-            gradle: '9.5.0'
-            mc: '1.21.1'
-            modloader: fabric
-            mrt: fabric
-            fabric_api: 0.107.0
-            create_project: create-fabric
-            create_loader: fabric
 
     steps:
       - name: Check out repository
@@ -81,7 +68,8 @@ jobs:
           import json, urllib.request, os
           mc = "${{ matrix.mc }}"
           proj = "${{ matrix.create_project }}"
-          url = f"https://api.modrinth.com/v2/project/{proj}/version?game_versions=%5B%22{mc}%22%5D&loaders=%5B%22${{ matrix.create_loader }}%22%5D"
+          loader = "${{ matrix.create_loader }}"
+          url = f"https://api.modrinth.com/v2/project/{proj}/version?game_versions=%5B%22{mc}%22%5D&loaders=%5B%22{loader}%22%5D"
           with urllib.request.urlopen(url) as r:
               versions = json.load(r)
           if not versions:
@@ -89,7 +77,6 @@ jobs:
           v = versions[0]
           file = v["files"][0]
           print("Create version:", v["version_number"])
-          print("Downloading:", file["url"])
           urllib.request.urlretrieve(file["url"], os.path.join("run/mods", file["filename"]))
           print("Saved:", file["filename"])
           PY
