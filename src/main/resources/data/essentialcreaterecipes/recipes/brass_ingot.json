@@ -1,0 +1,11 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {"item": "minecraft:copper_ingot"},
+    {"item": "create:zinc_ingot"}
+  ],
+  "results": [
+    {"item": "create:brass_ingot"}
+  ],
+  "heatRequirement": "heated"
+}

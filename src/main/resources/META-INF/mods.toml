@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="essentialcreaterecipes"
+version="1.0.0"
+displayName="Essential Create Recipes"
+authors="Itamio"
+description='''Combines the best Create recipe and automation addons into one mod: automate ores, stones, Tuff, Calcite, Dripstone, Basalt, Brass, Lapis, Ink Sacs, Netherrack, and more. Merges recipes inspired by Create: Automate Everything, Create: Full Automation, Create: Recipe Extensions, Create: Ultimate Factory, and Create: Refabricated Recipes into a single cross-loader pack with toggleable recipes.'''
+
+[[dependencies.essentialcreaterecipes]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.essentialcreaterecipes]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.essentialcreaterecipes]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5.1,)"
+    ordering="AFTER"
+    side="BOTH"
