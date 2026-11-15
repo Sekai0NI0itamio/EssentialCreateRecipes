@@ -1,0 +1,128 @@
+name: Runtime test Essential Create Recipes
+
+# Launches the real Minecraft client headlessly (HeadlessMC + Xvfb via
+# mc-runtime-test), which reaches the title screen, joins a single-player
+# world, then quits cleanly. Surviving this proves the mod (and its recipes)
+# load in-game. Create is downloaded from Modrinth into run/mods/.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  runtime-test:
+    name: rt-${{ matrix.variant }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: 1.20.1-forge
+            java: '17'
+            gradle: '8.14.3'
+            mc: '1.20.1'
+            modloader: forge
+            mrt: forge
+            fabric_api: none
+            create_project: create
+            create_loader: forge
+          - variant: 1.20.1-fabric
+            java: '21'
+            gradle: '9.5.0'
+            mc: '1.20.1'
+            modloader: fabric
+            mrt: fabric
+            fabric_api: 0.92.2
+            create_project: create-fabric
+            create_loader: fabric
+          - variant: 1.21.1-fabric
+            java: '21'
+            gradle: '9.5.0'
+            mc: '1.21.1'
+            modloader: fabric
+            mrt: fabric
+            fabric_api: 0.107.0
+            create_project: create-fabric
+            create_loader: fabric
+          - variant: 26.1.2-fabric
+            java: '21'
+            gradle: '9.5.0'
+            mc: '26.1.2'
+            modloader: fabric
+            mrt: fabric
+            fabric_api: 0.154.0
+            create_project: create-fabric
+            create_loader: fabric
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      - name: Set up Gradle ${{ matrix.gradle }}
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: ${{ matrix.gradle }}
+
+      - name: Build mod
+        working-directory: mods/essentialcreaterecipes/${{ matrix.variant }}
+        run: gradle build --no-daemon --stacktrace
+
+      - name: Stage mod for test client
+        run: |
+          mkdir -p run/mods
+          cp mods/essentialcreaterecipes/${{ matrix.variant }}/build/libs/essentialcreaterecipes-*.jar run/mods/
+          rm -f run/mods/*-sources.jar
+          ls -la run/mods/
+
+      - name: Download Create mod from Modrinth
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, os
+          mc = "${{ matrix.mc }}"
+          proj = "${{ matrix.create_project }}"
+          url = f"https://api.modrinth.com/v2/project/{proj}/version?game_versions=%5B%22{mc}%22%5D&loaders=%5B%22${{ matrix.create_loader }}%22%5D"
+          with urllib.request.urlopen(url) as r:
+              versions = json.load(r)
+          if not versions:
+              raise SystemExit("No Create version found")
+          v = versions[0]
+          file = v["files"][0]
+          print("Create version:", v["version_number"])
+          print("Downloading:", file["url"])
+          urllib.request.urlretrieve(file["url"], os.path.join("run/mods", file["filename"]))
+          print("Saved:", file["filename"])
+          PY
+          ls -la run/mods/
+
+      - name: Run Minecraft ${{ matrix.mc }} (${{ matrix.modloader }}) - title screen + in-game world load
+        uses: headlesshq/mc-runtime-test@5.0.0
+        with:
+          mc: ${{ matrix.mc }}
+          modloader: ${{ matrix.modloader }}
+          mc-runtime-test: ${{ matrix.mrt }}
+          java: ${{ matrix.java }}
+          xvfb: "true"
+          fabric-api: ${{ matrix.fabric_api }}
+          headlessmc-command: '--jvm "-DMcRuntimeGameTest=false"'
+
+      - name: Upload runtime logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rt-logs-${{ matrix.variant }}
+          path: |
+            run/logs/
+            .minecraft/logs/
+            **/latest.log
+          if-no-files-found: warn
