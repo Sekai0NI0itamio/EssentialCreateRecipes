@@ -27,7 +27,6 @@ Adds Create processing recipes (mixing, crushing, compacting, pressing, milling,
 - Snow -> Ice (compacting)
 - Brass Ingot (mixing, heated)
 - Netherrack (mixing, heated)
-- Ink Sac (filling, requires Create: Enchantment Industry)
 
 ## Requirements
 
