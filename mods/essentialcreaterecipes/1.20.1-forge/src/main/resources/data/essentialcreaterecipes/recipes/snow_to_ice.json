@@ -1,0 +1,10 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {"item": "minecraft:snow_block"}
+  ],
+  "results": [
+    {"item": "minecraft:ice"}
+  ],
+  "heatRequirement": "none"
+}

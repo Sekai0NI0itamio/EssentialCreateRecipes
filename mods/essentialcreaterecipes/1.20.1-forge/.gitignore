@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+out/
+*.class
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.eclipse/
+.settings/
+bin/
+
+# OS
+.DS_Store
+
+# Run
+run/
+run-data/

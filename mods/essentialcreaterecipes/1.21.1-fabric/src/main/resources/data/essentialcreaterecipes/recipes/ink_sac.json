@@ -1,0 +1,10 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {"item": "minecraft:glass_bottle"},
+    {"fluid": "create_enchantment_industry:ink", "amount": 250}
+  ],
+  "results": [
+    {"item": "minecraft:ink_sac"}
+  ]
+}

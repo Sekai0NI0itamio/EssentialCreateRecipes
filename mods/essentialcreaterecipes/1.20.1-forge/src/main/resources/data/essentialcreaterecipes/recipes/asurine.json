@@ -1,0 +1,12 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {"item": "create:ochrum"},
+    {"item": "create:veridium"},
+    {"item": "minecraft:redstone"}
+  ],
+  "results": [
+    {"item": "create:asurine"}
+  ],
+  "heatRequirement": "superheated"
+}

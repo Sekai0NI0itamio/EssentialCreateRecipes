@@ -1,0 +1,11 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {"item": "minecraft:stone"},
+    {"item": "minecraft:gravel"}
+  ],
+  "results": [
+    {"item": "minecraft:tuff"}
+  ],
+  "heatRequirement": "heated"
+}

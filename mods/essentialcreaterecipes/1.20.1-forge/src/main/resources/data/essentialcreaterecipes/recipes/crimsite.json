@@ -1,0 +1,11 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {"item": "create:cinder_flour"},
+    {"item": "minecraft:cobblestone"}
+  ],
+  "results": [
+    {"item": "create:crimsite"}
+  ],
+  "heatRequirement": "heated"
+}

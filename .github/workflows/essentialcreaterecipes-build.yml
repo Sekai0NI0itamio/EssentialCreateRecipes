@@ -10,31 +10,54 @@ permissions:
 
 jobs:
   build:
-    name: 1.20.1-forge
+    name: ${{ matrix.module }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - module: mods/essentialcreaterecipes/1.20.1-forge
+            java: '17'
+            gradle: '8.14.3'
+            artifact: essentialcreaterecipes-1.20.1-forge
+          - module: mods/essentialcreaterecipes/1.20.1-fabric
+            java: '17'
+            gradle: '9.5.0'
+            artifact: essentialcreaterecipes-1.20.1-fabric
+          - module: mods/essentialcreaterecipes/1.21.1-fabric
+            java: '21'
+            gradle: '9.5.0'
+            artifact: essentialcreaterecipes-1.21.1-fabric
+          - module: mods/essentialcreaterecipes/26.1.2-fabric
+            java: '21'
+            gradle: '9.5.0'
+            artifact: essentialcreaterecipes-26.1.2-fabric
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: ${{ matrix.java }}
 
-      - name: Set up Gradle
+      - name: Set up Gradle ${{ matrix.gradle }}
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.14.3"
+          gradle-version: ${{ matrix.gradle }}
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
 
       - name: Build
+        working-directory: ${{ matrix.module }}
         run: gradle build --no-daemon --stacktrace
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
-          name: essentialcreaterecipes-1.20.1-forge
-          path: build/libs/*.jar
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.module }}/build/libs/*.jar
           if-no-files-found: error
           retention-days: 14

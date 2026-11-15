@@ -1,0 +1,11 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {"item": "minecraft:cobblestone"},
+    {"item": "create:cinder_flour"}
+  ],
+  "results": [
+    {"item": "minecraft:netherrack"}
+  ],
+  "heatRequirement": "heated"
+}
